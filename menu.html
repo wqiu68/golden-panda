@@ -43,7 +43,7 @@
             <nav class="menu-nav">
                 <a href="#hot-bar-special" class="menu-nav-link hot-bar-link">🔥 Hot Bar Special</a>
                 <a href="#combo-boxes" class="menu-nav-link combo-boxes-link">🍱 Combo Boxes</a>
-                <a href="#wings-special" class="menu-nav-link">Wings</a>
+                <a href="#wings-special" class="menu-nav-link wings-link">🍗 Wings</a>
                 <a href="#appetizer" class="menu-nav-link">Appetizer</a>
                 <a href="#soup" class="menu-nav-link">Soup</a>
                 <a href="#fried-rice" class="menu-nav-link">Fried Rice</a>
@@ -63,8 +63,10 @@
     <section class="menu-section">
         <div class="container">
             <!-- Hot Bar Specials / Create a Plate -->
+
             <div id="hot-bar-special" class="menu-category special-category">
                 <!-- Create a Plate -->
+                <h2 class="menu-category-title">Hot Bar Specials</h2>
                 <div class="special-plates">
                     <h3 class="special-subtitle">Create a Plate</h3>
                     <div class="menu-items">
@@ -1142,7 +1144,9 @@
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    const offsetTop = targetElement.offsetTop - 100;
+                    const menuNavHeight = 80; // Height of sticky menu nav
+                    const navbarHeight = 70; // Height of navbar
+                    const offsetTop = targetElement.offsetTop - menuNavHeight - navbarHeight;
                     window.scrollTo({
                         top: offsetTop,
                         behavior: 'smooth'
@@ -1161,10 +1165,14 @@
 
         window.addEventListener('scroll', () => {
             let current = '';
+            const menuNavHeight = 80;
+            const navbarHeight = 70;
+            const scrollOffset = menuNavHeight + navbarHeight;
+            
             menuCategories.forEach(category => {
                 const categoryTop = category.offsetTop;
                 const categoryHeight = category.clientHeight;
-                if (window.pageYOffset >= (categoryTop - 150)) {
+                if (window.pageYOffset >= (categoryTop - scrollOffset - 50)) {
                     current = category.getAttribute('id');
                 }
             });
